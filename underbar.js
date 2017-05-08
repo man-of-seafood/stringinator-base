@@ -5,10 +5,12 @@ const identity = function(val) {
 
 // Returns the first n elements of the given array.
 const first = function(array, n = 1) {
+  return n === 1 ? array[0] : array.slice(0, n);
 };
 
 // Returns the last n elements of the given array.
 const last = function(array, n = 1) {
+  return n === 1 ? array[array.length - 1] : array.slice(Math.max(array.length - n, 0));
 };
 
 // see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf
