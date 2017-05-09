@@ -60,7 +60,6 @@ const map = function(obj, callback=identity) {
 // E.g. given an array of people objects, return an array of just their ages.
 const pluck = function(obj, key) {
   //obj in this case is going to the be array of objs
-  
   return map(obj, (item) => item[key]);
 };
 
@@ -71,6 +70,18 @@ const pluck = function(obj, key) {
 // value. The callback is invoked with four arguments:
 // (accumulator, value, index|key, collection).
 const reduce = function(obj, callback=identity, initialValue) {
+  // first step: determine if the intialValue has been passed explicitly
+  let accumulator = initialValue;
+  let initializing = accumulator === undefined; //if acc undefined, then we need to init it (aka we're still init-ing)
+  each(obj, function(currentValue, indexOrKey, iteratedObj) {
+    if(initializing) {
+      initializing = false;
+      accumulator = currentValue;
+    } else {
+      accumulator = callback(accumulator, currentValue, indexOrKey, iteratedObj);
+    }
+  });
+  return accumulator;
 };
 
 // Return true if the object contains the target.
