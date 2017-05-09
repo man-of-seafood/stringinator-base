@@ -29,6 +29,7 @@ const isOnlyDigits = function(str) {
 
 const filterToOnlyDigits = function(str) {
   // Your code goes here
+  return _.filter(str, char => char >= '0' && char <= '9').join('');
 };
 
 const truncateString = function(val, maxLength) {
