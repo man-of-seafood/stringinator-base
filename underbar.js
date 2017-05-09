@@ -47,6 +47,13 @@ const each = function(obj, callback=identity) {
 // Return the results of applying the callback to each element.
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
 const map = function(obj, callback=identity) {
+  //apply callback to every element, add the result of that callback call on the el to a collection
+  //return that collection
+  const results = [];
+  each(obj, function(item, indexOrKey, iteratedObj) {
+    results.push(callback(item, indexOrKey, iteratedObj));
+  })
+  return results;
 };
 
 // Return an array of the values o a certain property in the collection.
