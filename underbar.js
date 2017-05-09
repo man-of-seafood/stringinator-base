@@ -108,6 +108,14 @@ const some = function(obj, callback=identity) {
 
 // Return an array with all elements / object values that are accepted by the callback.
 const filter = function(obj, callback=identity) {
+  //similar to map, but rather than doing a transformation, it checks booleans. can't use map.
+  const filtered = [];
+  each(obj, function(currentItem, indexOrKey, iteratedObj) {
+    if(callback(currentItem)) {
+      filtered.push(currentItem);
+    }
+  });
+  return filtered;
 };
 
 // Return object without the elements / object valuesthat were rejected by the callback.
