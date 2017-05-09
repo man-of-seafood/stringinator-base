@@ -72,7 +72,7 @@ const pluck = function(obj, key) {
 const reduce = function(obj, callback=identity, initialValue) {
   // first step: determine if the intialValue has been passed explicitly
   let accumulator = initialValue;
-  let initializing = accumulator === undefined; //if acc undefined, then we need to init it (aka we're still init-ing)
+  let initializing = accumulator === undefined; 
   each(obj, function(currentValue, indexOrKey, iteratedObj) {
     if(initializing) {
       initializing = false;
@@ -86,6 +86,10 @@ const reduce = function(obj, callback=identity, initialValue) {
 
 // Return true if the object contains the target.
 const contains = function(obj, target) {
+  //use reduce !
+  return reduce(obj, (wasFound, currentItem) => {
+    return wasFound || currentItem === target;
+  }, false);
 };
 
 // Return true if all the elements / object values are accepted by the callback.
